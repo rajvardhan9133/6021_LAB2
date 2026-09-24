@@ -60,7 +60,7 @@ class ConvolutionInterpolator:
         """
         '''raise NotImplementedError("Implement this method")'''
         half = int(np.ceil(3 * sigma))
-        x = np.arange(half, half + 1)
+        x = np.arange(-half, half + 1)
         g = (1.0 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-(x ** 2) / (2 * sigma ** 2))
         kernel = np.outer(g, g)
         kernel = kernel / kernel.sum()
@@ -112,3 +112,4 @@ class ConvolutionInterpolator:
         order = kwargs.get("order", 0)
 
         result = rescale(image, scale_factor, order=order, anti_aliasing=False, mode="reflect")
+        return result
